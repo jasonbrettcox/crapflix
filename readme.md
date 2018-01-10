@@ -1,5 +1,12 @@
 Trello board with user stories is here : https://trello.com/b/hmUfFdFE/project-2-shitflix
 
+wireframe images:
+https://github.com/jasonbrettcox/crapflix/blob/master/splash.jpg
+https://github.com/jasonbrettcox/crapflix/blob/master/login-new-acct.jpg
+https://github.com/jasonbrettcox/crapflix/blob/master/createnew.jpg
+https://github.com/jasonbrettcox/crapflix/blob/master/ohcrap.jpg
+https://github.com/jasonbrettcox/crapflix/blob/master/searchby.jpg
+https://github.com/jasonbrettcox/crapflix/blob/master/results.jpg
 
 this is a basic movie search app that connects to the Online Move Database (OMDB).  The unique feature of this app is that it allows people to search for bad movies - thus the name, ShitFlix. 
 
