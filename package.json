@@ -1,0 +1,38 @@
+{
+  "name": "shitflix",
+  "version": "1.0.0",
+  "description": "Trello board with user stories is here : https://trello.com/b/hmUfFdFE/project-2-shitflix",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonbrettcox/shitflix.git"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "~1.0.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.0.1",
+    "ejs": "~0.8.5",
+    "express": "~4.0.0",
+    "express-ejs-layouts": "^1.1.0",
+    "express-session": "^1.0.4",
+    "hbs": "^4.0.0",
+    "method-override": "~1.0.0",
+    "mongoose": "^4.13.9",
+    "morgan": "^1.0.1",
+    "passport": "~0.1.17",
+    "passport-facebook": "~1.0.2",
+    "passport-google-oauth": "~0.1.5",
+    "passport-local": "^0.1.6",
+    "passport-twitter": "~1.0.2"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonbrettcox/shitflix/issues"
+  },
+  "homepage": "https://github.com/jasonbrettcox/shitflix#readme"
+}

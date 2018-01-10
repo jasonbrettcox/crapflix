@@ -2,6 +2,7 @@ var passport = require("passport")
 
 // GET /signup
 function getSignup(request, response) {
+  response.render('signup.ejs', { message: request.flash('signupMessage') });
 }
 
 // POST /signup
