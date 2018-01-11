@@ -1,5 +1,22 @@
 <% include ./partials/header.ejs %>
 Welcome to ShitFlix
 
-here show main search functions
+<form>
+  <div class="form-group">
+    <label for="searchByGenre">Search by Genre</label>
+    <input type="text" class="form-control" id="searchByGenre" aria-describedby="" placeholder="e.g. action, romance">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Search by keyword</label>
+    <input type="text" class="form-control" id="searchByKeyword" placeholder="e.g. beach, fraternity, racecars">
+    <small id="keywordHelp" class="form-text text-muted">Search for plot elements, settings, or character types.</small><br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  <div class="form-group">
+  <label for="searchByGenre">Feeling shitty? Get a random shit movie.</label><br>
+  <button type="submit" id="feelingShitty" class="btn btn-primary">Shit Me</button>
+  </div>
+</form>
 <% include ./partials/footer.ejs %>
