@@ -7,13 +7,14 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
+var handlebars   = require( 'handlebars');
 
-mongoose.connect('mongodb://localhost/local-authentication-with-passport'); //replace with my db
+mongoose.connect('mongodb://localhost/local-authentication-with-passport', {useMongoClient : true}); //replace with my db
 
 
 app.use(morgan('dev')); 
 app.use(cookieParser());
-app.use(bodyParser()); 
+app.use(bodyParser.urlencoded({extended: true})); 
 
 app.set('views', './views');
 app.engine('ejs', require('ejs').renderFile);
@@ -27,8 +28,14 @@ app.use(passport.session());
 app.use(flash()); 
 
 require('./config/passport')(passport);
+app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+  });
 
 var routes = require('./config/routes');
 app.use(routes);
 
-app.listen(3000);
+app.listen(3000)  
+    console.log('listening on port 3000');
+;

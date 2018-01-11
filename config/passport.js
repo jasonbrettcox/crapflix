@@ -1,6 +1,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require('../models/user');
 
+
 module.exports = function(passport) {  //set up local strategy with these fields for authentication
     passport.serializeUser(function(user, callback) {
         callback(null, user.id);
@@ -16,6 +17,7 @@ module.exports = function(passport) {  //set up local strategy with these fields
     passwordField : 'password',
     passReqToCallback : true
   }, function(req, email, password, callback) {
+     //customize new account signup fucntionality
     User.findOne({ 'local.email' :  email }, function(err, user) {
         if (err) return callback(err);
   
@@ -37,4 +39,27 @@ module.exports = function(passport) {  //set up local strategy with these fields
       });
     
   }));
-}
+  passport.use('local-login', new LocalStrategy({ //now creating the login strategy which uses same fields as signup
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true
+  }, function(req, email, password, callback) {
+      // Search for a user with this email
+    User.findOne({ 'local.email' :  email }, function(err, user) {
+      if (err) {
+        return callback(err);
+      }
+
+      // If no user is found
+      if (!user) {
+        return callback(null, false, req.flash('loginMessage', 'No user found.'));
+      }
+      // Wrong password
+      if (!user.validPassword(password)) {
+        return callback(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+      }
+
+      return callback(null, user);
+    });
+  }));
+  };
