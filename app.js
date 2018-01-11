@@ -11,7 +11,6 @@ var handlebars   = require( 'handlebars');
 
 mongoose.connect('mongodb://localhost/local-authentication-with-passport', {useMongoClient : true}); //replace with my db
 
-
 app.use(morgan('dev')); 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true})); 
@@ -36,6 +35,10 @@ app.use(function (req, res, next) {
 var routes = require('./config/routes');
 app.use(routes);
 
-app.listen(3000)  
-    console.log('listening on port 3000');
-;
+//adding html endpoints for API
+
+
+
+app.listen(process.env.PORT || 3000, function () {
+    console.log('Express server is up and running on http://localhost:3000/');
+  });

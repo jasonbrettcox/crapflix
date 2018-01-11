@@ -23,7 +23,7 @@ module.exports = function(passport) {  //set up local strategy with these fields
   
         // see if we already have a user with this email 
         if (user) {
-      return callback(null, false, req.flash('signupMessage', 'Oh crap! There is already an account with this email.'));
+      return callback(null, false, req.flash('signupMessage', 'Oh shit! There is already an account with this email.'));
         } else {
         // There is no user registered with this email
       // Create a new user
