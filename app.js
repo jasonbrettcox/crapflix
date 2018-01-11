@@ -7,7 +7,10 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-var handlebars   = require( 'handlebars');
+var handlebars   = require('handlebars');
+var request      = require('request');
+var myVar        = require('./models');
+var apiKey       = myVar.apiKey
 
 mongoose.connect('mongodb://localhost/local-authentication-with-passport', {useMongoClient : true}); //replace with my db
 
@@ -50,49 +53,46 @@ app.get('/', function homepage(req, res) {
 // i.e. `/images`, `/scripts`, `/styles`
 app.use(express.static('public'));
 
+//get one movie searched by keyword
+app.get('/movie'), function(req, res){
+  console.log ('movie route was hit');
+
+  request.get({
+    url: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + req.query.movie+ "&language=en-US&page=1&include_adult=false" 
+  }, function(err, response, body){
+    if(!err && response.statusCode == 200){
+       
+        var jsonBody = JSON.parse(body);
+        // console.log(jsonBody);
+        res.render('movieResults.ejs', { jsonBody });  
+    } else if(err){
+        res.send(err);
+    }
+});
+
+};
+
 
 /************
  * DATABASE *
  ************/
 
-// var db = require('./models');
-
-
-//json endpoints  
-
-app.get('/api', function api_index(req, res) {
-    // what do I need to keep out of here
-    res.json({
-      woops_i_has_forgot_to_document_all_my_endpoints: false, // CHANGE ME ;)
-      message: "Here's the dirt",
-      documentation_url: "", // CHANGE ME
-      base_url: "https://peaceful-escarpment-87562.herokuapp.com/", // this is c
-      endpoints: [
-        {method: "GET", path: "/api", description: "Describes all available endpoints"},
-        {method: "GET", path: "/api/profile", description: "Data about me"},
-        {method: "GET", path: "/api/sandwiches", description: "Get ALL the sammiches"},
-        {method: "POST", path: "/api/sandwiches", description: "Create a new sammich"},
-        {method: "PUT", path: "/api/sandwiches", description: "Update a sammich"},
-    //     {method: "DELETE", path: "/api/sandwiches", description: "Delete a sammich :("}
-       ]
-    })
-  });
- 
+var db = require('./models');
   
-  //get all movies, does not make sense, needs to be search 
+  //get all movies, does not make sense, needs to be 
   app.get('/api/movie', function (req, res){
-    db.Sandwich.find(function(err, sandwich){
-      res.json(sandwich);
+    db.Movie.find(function(err, movie){
+      res.json(movie);
       });
     });
   
     //get one movie by id
-    app.get('/api/movie/:id', function (req, res){
-      db.Sandwich.findById(req.params.id, function(err, sandwich){
-    if (err) {return console.log("Cannot find this movie", + err)}
-        res.json(sandwich);
-      });      
-    });
+    // app.get('/api/movie/:id', function (req, res){
+    //   db.Sa.findById(req.params.id, function(err, sandwich){
+    // if (err) {return console.log("Cannot find this movie", + err)}
+    //     res.json(sandwich);
+    //   });      
+    // });
     
   
   // post route needs to create new user
@@ -110,11 +110,13 @@ app.get('/api', function api_index(req, res) {
 //       }
 //       console.log('saved');
 //       res.json(sandwich);
-//     });
+//     });search 
 //   });
+
+
   //update user somehow
   app.put('/api/user/:id', function (req, res){
-    db.Sandwich.findOneAndUpdate({_id: req.params.id}, {$set: {description: req.body.description, bread: req.body.bread, protein: req.body.protein, condiment: req.body.condiment, length: req.body.length}}, {new: true}, function(err, sandwich){
+    db.Movie.findOneAndUpdate({_id: req.params.id}, {$set: {description: req.body.description, bread: req.body.bread, protein: req.body.protein, condiment: req.body.condiment, length: req.body.length}}, {new: true}, function(err, sandwich){
   if (err) {return console.log("you suck", + err)}
       res.json(sandwich);
     });      
