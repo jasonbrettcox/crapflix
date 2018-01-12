@@ -10,7 +10,8 @@ var staticsController = require('../controllers/statics');
 
 function authenticatedUser(req, res, next) {
   // If the user is authenticated, then we continue the execution
-  if (req.isAuthenticated()) return next();
+  if (req.isAuthenticated())
+  return next();
 
   // Otherwise the request is always redirected to the home page
   res.redirect('/');
@@ -33,6 +34,12 @@ router.route("/logout")
 router.route("/secret")
   .get(authenticatedUser, usersController.secret)
 
+router.route("/search")
+  .get(authenticatedUser, usersController.search)
+  
+router.route("/home")
+  .get(authenticatedUser, usersController.home)
+
 router.route("/movieResult")
-  .get(usersController.getMovie)
+  .get(authenticatedUser, usersController.getMovie)
 module.exports = router

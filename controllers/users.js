@@ -28,7 +28,7 @@ function getLogin(request, response) {
 // POST /login 
 function postLogin(request, response, next) {
     var loginStrategy = passport.authenticate('local-login', {
-      successRedirect : '/',
+      successRedirect : '/home',
       failureRedirect : '/login',
       failureFlash : true
     });
@@ -49,9 +49,15 @@ function secret(request, response){
   response.render('secret.ejs')
 }
 
+// login to show search page
+function search(request, response){
+  response.render('search.ejs')
+}
 
-//database routes
-
+//logged in homepage
+function home(request, response){
+  response.render('home.ejs')
+}
 
 
 //get one movie searched by keyword
@@ -63,8 +69,10 @@ function getMovie(req, res){
   },function(err, response, body){
     if(!err && response.statusCode == 200){
         var jsonBody = JSON.parse(body);
-        console.log(jsonBody);
-        res.render('movieResults.ejs', {jsonBody} );  
+        // console.log(jsonBody);
+        var jsonObject = jsonBody.results[Math.floor((Math.random() * 10) + 1)]
+        console.log(jsonObject)
+        res.render('movieResults.ejs', {jsonObject} );  
     } else if(err){
         res.send(err);
     }
@@ -79,5 +87,7 @@ module.exports = {
   postSignup: postSignup,
   getLogout: getLogout,
   getMovie: getMovie,
-  secret: secret
+  secret: secret,
+  search: search,
+  home: home
 }

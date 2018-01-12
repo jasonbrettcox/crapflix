@@ -41,7 +41,7 @@ app.use(routes);
 //adding html endpoints for API
 
 app.get('/', function homepage(req, res) {
-    res.render(__dirname + '/views/index.ejs');//do i need a splash page + a homepage?
+    res.render(__dirname + '/views/index.ejs');
       
   });
 
@@ -53,22 +53,6 @@ app.get('/', function homepage(req, res) {
 // i.e. `/images`, `/scripts`, `/styles`
 app.use(express.static('public'));
 
-//get one movie searched by keyword
-
-//   request.get({
-//     url: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + req.query.movie + "&language=en-US&page=1&include_adult=false" 
-//   },function(err, response, body){
-//     if(!err && response.statusCode == 200){
-      
-//         var jsonBody = JSON.parse(body);
-//         console.log(jsonBody);
-//         res.render('movieResults.ejs', {jsonBody} );  
-//     } else if(err){
-//         res.send(err);
-//     }
-// });
-
-// });
 
 
 /************
@@ -84,41 +68,14 @@ var db = require('./models');
       });
     });
   
-    //get one movie by id
-    // app.get('/api/movie/:id', function (req, res){
-    //   db.Sa.findById(req.params.id, function(err, sandwich){
-    // if (err) {return console.log("Cannot find this movie", + err)}
-    //     res.json(sandwich);
-    //   });      
-    // });
-    
   
-  // post route needs to create new user
-//   app.post('/api/sandwich', function (req, res){
-//     var newSandwich = new db.Sandwich({
-//       description: req.body.description,
-//       bread: req.body.bread,
-//       protein: req.body.protein,
-//       condiment: req.body.condiment,
-//       length: req.body.length
-//     });
-//     newSandwich.save(function (err, sandwich){
-//       if (err) {
-//         return console.log("save error:" + err);
-//       }
-//       console.log('saved');
-//       res.json(sandwich);
-//     });search 
-//   });
-
-
   //update user somehow
-  app.put('/api/user/:id', function (req, res){
-    db.Movie.findOneAndUpdate({_id: req.params.id}, {$set: {description: req.body.description, bread: req.body.bread, protein: req.body.protein, condiment: req.body.condiment, length: req.body.length}}, {new: true}, function(err, sandwich){
-  if (err) {return console.log("you suck", + err)}
-      res.json(sandwich);
-    });      
-  });
+  // app.put('/api/user/:id', function (req, res){
+  //   db.Movie.findOneAndUpdate({_id: req.params.id}, {$set: {description: req.body.description, bread: req.body.bread, protein: req.body.protein, condiment: req.body.condiment, length: req.body.length}}, {new: true}, function(err, sandwich){
+  // if (err) {return console.log("you suck", + err)}
+  //     res.json(sandwich);
+  //   });      
+  // });
   
   //delete route needs to delete user account or favorite
 //   app.delete('/api/sandwich/:id', function (req, res){

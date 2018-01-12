@@ -1,13 +1,21 @@
-<% include ./partials/header.ejs %>
-Here's a shit flick:<br>
-Title:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].title %><br>
-Poster:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].poster_path%><br>
-Release Date:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].release_date %><br>
-Plot Overview:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].overview %><br>
-IMDB Id:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].id%><br>
-Rating:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].vote_average%>
+<script>
+// var myVar        = require('./models');
+var randomNumber          = Math.floor((Math.random() * 10) + 1)
 
-<button onclick="myFunction()">Find me another</button>
+</script>
+<% include ./partials/header.ejs %>
+
+
+<div class="container">
+<h1>Here's a shit flick:</h1><br>
+<h3>Title:  <%=jsonObject.title %><br>
+Poster:  <%=jsonObject.poster_path%><br>
+Release Date:  <%=jsonObject.release_date %><br>
+Plot Overview:  <%=jsonObject.overview %><br>
+IMDB Id:  <%=jsonObject.id%><br>
+Rating:  <%=jsonObject.vote_average%></h3>
+
+<button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
 <br>
 <br>
 <script>
@@ -15,6 +23,20 @@ function myFunction() {
     location.reload();
 }
 </script>
-
+<br><br>
+<button type="button" class= "btn btn-primary" onclick= 'myFunction(<%=jsonObject.id%>)'>Save to favorites</button>
+<br>
+<br>
+<script>
+function myFunction(id) {
+    console.log(id);
+    //function to push into favorites array
+    // user.favorites.push(id)
+    //     return user.favorites
+    
+}
+</script>
+</div>
 
 <% include ./partials/footer.ejs %>
+
