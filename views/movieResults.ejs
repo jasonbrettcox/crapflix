@@ -1,13 +1,20 @@
 <% include ./partials/header.ejs %>
-Here's a shit flick:
-Title: <%=jsonBody.results[7].title %><br>
-Poster: <%=jsonBody.results[7].poster_path%><br>
-Release Date: <%=jsonBody.results[7].release_date %><br>
-Image: <%=jsonBody.results[7].backdrop_path %><br>
-Plot Overview<%=jsonBody.results[7].overview %><br>
-IMDB Id: <%=jsonBody.results[7].id%>
+Here's a shit flick:<br>
+Title:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].title %><br>
+Poster:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].poster_path%><br>
+Release Date:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].release_date %><br>
+Plot Overview:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].overview %><br>
+IMDB Id:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].id%><br>
+Rating:  <%=jsonBody.results[Math.floor((Math.random() * 10) + 1)].vote_average%>
 
-
+<button onclick="myFunction()">Find me another</button>
+<br>
+<br>
+<script>
+function myFunction() {
+    location.reload();
+}
+</script>
 
 
 <% include ./partials/footer.ejs %>
