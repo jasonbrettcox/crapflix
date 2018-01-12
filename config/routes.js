@@ -33,4 +33,6 @@ router.route("/logout")
 router.route("/secret")
   .get(authenticatedUser, usersController.secret)
 
+router.route("/movieResult")
+  .get(usersController.getMovie)
 module.exports = router

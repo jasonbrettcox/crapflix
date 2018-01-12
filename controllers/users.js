@@ -1,4 +1,8 @@
-var passport = require("passport")
+var passport      = require("passport")
+var express       = require('express');
+var app           = express();
+var request       = require("request");
+var apiKey       = require('../models/env').apiKey;
 
 // GET /signup
 function getSignup(request, response) {
@@ -45,11 +49,35 @@ function secret(request, response){
   response.render('secret.ejs')
 }
 
+
+//database routes
+
+
+
+//get one movie searched by keyword
+function getMovie(req, res){
+  console.log ('movie route was hit');
+  
+  request.get({
+    url: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + req.query.movie + "&language=en-US&page=1&include_adult=false" 
+  },function(err, response, body){
+    if(!err && response.statusCode == 200){
+        var jsonBody = JSON.parse(body);
+        console.log(jsonBody);
+        res.render('movieResults.ejs', {jsonBody} );  
+    } else if(err){
+        res.send(err);
+    }
+});
+
+};
+
 module.exports = {
   getLogin: getLogin,
   postLogin: postLogin ,
   getSignup: getSignup,
   postSignup: postSignup,
   getLogout: getLogout,
+  getMovie: getMovie,
   secret: secret
 }

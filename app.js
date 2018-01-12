@@ -35,8 +35,8 @@ app.use(function (req, res, next) {
     next();
   });
 
-// var routes = require('./config/routes');
-// app.use(routes);
+var routes = require('./config/routes');
+app.use(routes);
 
 //adding html endpoints for API
 
@@ -54,23 +54,21 @@ app.get('/', function homepage(req, res) {
 app.use(express.static('public'));
 
 //get one movie searched by keyword
-app.get('/movieResult', function(req, res){
-  console.log ('movie route was hit');
 
-  request.get({
-    url: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + req.query.movie + "&language=en-US&page=1&include_adult=false" 
-  },function(err, response, body){
-    if(!err && response.statusCode == 200){
+//   request.get({
+//     url: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + req.query.movie + "&language=en-US&page=1&include_adult=false" 
+//   },function(err, response, body){
+//     if(!err && response.statusCode == 200){
       
-        var jsonBody = JSON.parse(body);
-        console.log(jsonBody);
-        res.render('movieResults.ejs', {jsonBody} );  
-    } else if(err){
-        res.send(err);
-    }
-});
+//         var jsonBody = JSON.parse(body);
+//         console.log(jsonBody);
+//         res.render('movieResults.ejs', {jsonBody} );  
+//     } else if(err){
+//         res.send(err);
+//     }
+// });
 
-});
+// });
 
 
 /************
@@ -133,4 +131,5 @@ var db = require('./models');
 
 app.listen(process.env.PORT || 3000, function () {
     console.log('Express server is up and running on http://localhost:3000/');
+
   });
