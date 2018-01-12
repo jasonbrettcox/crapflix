@@ -1,38 +1,46 @@
-<script>
-// var myVar        = require('./models');
-var randomNumber          = Math.floor((Math.random() * 10) + 1)
 
-</script>
+
+<% var randomNumber          = Math.floor((Math.random() * 10) + 1)
+console.log(jsonObject)%>
 <% include ./partials/header.ejs %>
-
+<% console.log('testing') %>
 
 <div class="container">
-<h1>Here's a shit flick:</h1><br>
-<h3>Title:  <%=jsonObject.title %><br>
-Poster:  <%=jsonObject.poster_path%><br>
-Release Date:  <%=jsonObject.release_date %><br>
-Plot Overview:  <%=jsonObject.overview %><br>
-IMDB Id:  <%=jsonObject.id%><br>
-Rating:  <%=jsonObject.vote_average%></h3>
+<p><h1>Here's a shit flick:</h1></P>
+<form>
+    <div class="form-group">
+        
+        <label for="resultTitle">Title: </label>
+        <input type="text" class="form-control form-control-lg" id="resultTitle"  value="<%=jsonObject.title %>"/>
+        <!--Poster:  <%=jsonObject.poster_path%><br>-->
+        <label for="resultReleaseDate">Release Date: </label>
+        <input type="text" class="form-control form-control-lg" id="resultReleaseDate" value="<%=jsonObject.release_date %>"/>
+        <label for="resultOverview">Plot Overview: </label>
+        <input type="text" class="form-control form-control-lg" id="resultPlotOverview" value="<%=jsonObject.overview %>"/>
+        <label for="resultIMDB">IMDB Id: </label>
+        <input type="text" class="form-control form-control-lg" id="resultIMDBId" value="<%=jsonObject.id %>"/>
+        <label for="resultRating">Average Rating: </label>
+        <input type="text" class="form-control form-control-lg" id="resultRating" value="<%=jsonObject.vote_average%>"/>
+    </div>    
+          
 
-<button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
-<br>
-<br>
-<script>
-function myFunction() {
-    location.reload();
-}
-</script>
-<br><br>
-<button type="button" class= "btn btn-primary" onclick= 'myFunction(<%=jsonObject.id%>)'>Save to favorites</button>
-<br>
-<br>
-<script>
-function myFunction2(id) {
-    console.log(id);
-    //function to push into favorites array
-    // user.favorites.push(id)
-    //     return user.favorites
+        <button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
+        <br>
+        <br>
+        <script>
+        function myFunction() {
+            location.reload();
+        }
+        </script>
+        <br><br>
+        <button type="button" class= "btn btn-primary" onclick= 'pushToFavorites(<%=jsonObject.id%>)'>Save to favorites</button>
+        <br>
+        <br>
+        <script>
+        function pushToFavorites(id) {
+   
+        
+
     
 }
 </script>
