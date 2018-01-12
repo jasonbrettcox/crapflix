@@ -1,3 +1,13 @@
 <% include ./partials/header.ejs %>
-movie results data goes here somehow, by magic probably
+Here's a shit flick:
+Title: <%=jsonBody.results[7].title %><br>
+Poster: <%=jsonBody.results[7].poster_path%><br>
+Release Date: <%=jsonBody.results[7].release_date %><br>
+Image: <%=jsonBody.results[7].backdrop_path %><br>
+Plot Overview<%=jsonBody.results[7].overview %><br>
+IMDB Id: <%=jsonBody.results[7].id%>
+
+
+
+
 <% include ./partials/footer.ejs %>

@@ -10,7 +10,7 @@ var session      = require('express-session');
 var handlebars   = require('handlebars');
 var request      = require('request');
 var myVar        = require('./models');
-var apiKey       = myVar.apiKey
+var apiKey       = require('./models/env').apiKey;
 
 mongoose.connect('mongodb://localhost/local-authentication-with-passport', {useMongoClient : true}); //replace with my db
 
@@ -35,14 +35,14 @@ app.use(function (req, res, next) {
     next();
   });
 
-var routes = require('./config/routes');
-app.use(routes);
+// var routes = require('./config/routes');
+// app.use(routes);
 
 //adding html endpoints for API
 
 app.get('/', function homepage(req, res) {
-    res.sendFile(__dirname + '/views/index.ejs');//do i need a splash page + a homepage?
-
+    res.render(__dirname + '/views/index.ejs');//do i need a splash page + a homepage?
+      
   });
 
   /**********
@@ -54,23 +54,23 @@ app.get('/', function homepage(req, res) {
 app.use(express.static('public'));
 
 //get one movie searched by keyword
-app.get('/movie'), function(req, res){
+app.get('/movieResult', function(req, res){
   console.log ('movie route was hit');
 
   request.get({
-    url: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + req.query.movie+ "&language=en-US&page=1&include_adult=false" 
-  }, function(err, response, body){
+    url: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + req.query.movie + "&language=en-US&page=1&include_adult=false" 
+  },function(err, response, body){
     if(!err && response.statusCode == 200){
-       
+      
         var jsonBody = JSON.parse(body);
-        // console.log(jsonBody);
-        res.render('movieResults.ejs', { jsonBody });  
+        console.log(jsonBody);
+        res.render('movieResults.ejs', {jsonBody} );  
     } else if(err){
         res.send(err);
     }
 });
 
-};
+});
 
 
 /************
