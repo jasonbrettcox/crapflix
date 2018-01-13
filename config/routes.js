@@ -46,6 +46,6 @@ router.route("/movieResult")
 router.route("/favorites")
   .get(authenticatedUser, usersController.getFavorites)
 
-  router.route("/favorites") //?? how is this route set up?
-  .get(authenticatedUser, usersController.deleteFavorites)
+  // router.route("/favorites") //?? how is this route set up?
+  // .get(authenticatedUser, usersController.deleteFavorites)
 module.exports = router

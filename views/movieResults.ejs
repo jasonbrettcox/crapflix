@@ -1,12 +1,12 @@
 
 
-<% var randomNumber          = Math.floor((Math.random() * 10) + 1)
-console.log(jsonObject)%>
+<!--var randomNumber          = Math.floor((Math.random() * 10) + 1)-->
+<% console.log(jsonObject)%>
 <% include ./partials/header.ejs %>
 <% console.log('testing') %>
 
 <div class="container">
-<p><h1>Here's a shit flick:</h1></P>
+<p><h1>Here's a real turd:</h1></P>
 <form>
     <div class="form-group">
         
@@ -27,18 +27,9 @@ console.log(jsonObject)%>
        
 
         <br><br>
-        <button type="button" class= "btn btn-primary" id="favoriteButton" onclick= 'pushToFavorites(<%=jsonObject%>)'>Save to favorites</button>
+        <button type="button" class= "btn btn-primary" id="favoriteButton" type='submit'>Save to favorites</button>
         
-        <%  $('#favoriteButton').on('submit', function(e) {
-            e.preventDefault();
-            $.ajax({
-            method: 'POST',
-            url: '/api/favorites',
-            data: $(this).serialize(),
-            success: newFavoriteSuccess,
-            error: newFavoriteError
-    });
-  });%>
+ 
 
  <button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
         <%function myFunction() {location.reload();}%>
@@ -49,6 +40,9 @@ console.log(jsonObject)%>
     
 
 </div>
+<% src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous" %>
 
 <% include ./partials/footer.ejs %>
 
