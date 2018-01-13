@@ -42,4 +42,10 @@ router.route("/home")
 
 router.route("/movieResult")
   .get(authenticatedUser, usersController.getMovie)
+
+router.route("/favorites")
+  .get(authenticatedUser, usersController.getFavorites)
+
+  router.route("/favorites") //?? how is this route set up?
+  .get(authenticatedUser, usersController.deleteFavorites)
 module.exports = router

@@ -81,6 +81,10 @@ function getMovie(req, res){
 };
 
 //get all favorites
+function getFavorites(req, res){
+  console.log('get allfavorites houte hit');
+}
+
 app.get('/api/favorites', function (req, res) {
   // send all favorites as JSON response --- should this be html?
   db.Favorites.find(function(err, favorites){
@@ -90,6 +94,9 @@ app.get('/api/favorites', function (req, res) {
 });
 
 // create new favorite
+function postFavorite(req, res){
+  console.log('post favorites houte hit');
+}
 app.post('/api/favorites', function (req, res) {
   // create new favorite with form data (`req.body`)
   var newFavorite = new db.Favorite(req.body);
@@ -102,6 +109,10 @@ app.post('/api/favorites', function (req, res) {
 });
 
 //delete a favorite, needs to be attached to a button
+
+function deleteFavorite(req, res){
+  console.log('post favorites houte hit');
+}
 app.delete('/api/favorites/:id', function (req, res) {
   // get favorite id from url params (`req.params`)
   console.log(req.params)
@@ -109,11 +120,9 @@ app.delete('/api/favorites/:id', function (req, res) {
 
   db.Favorite.findOneAndRemove({ _id: favoriteId }, function (err, deletedFavorite) {
     res.json(deletedFavorite);
+  
   });
 });
-
-
-
 
 
 module.exports = {
@@ -125,5 +134,9 @@ module.exports = {
   getMovie: getMovie,
   secret: secret,
   search: search,
-  home: home
-}
+  home: home,
+  getFavorites: getFavorites,
+  postFavorite: postFavorite,
+  deleteFavorite: deleteFavorite,
+
+};

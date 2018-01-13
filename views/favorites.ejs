@@ -1,6 +1,8 @@
 <% include ./partials/header.ejs %>
 
-load favorites data here and show a delete button for each
-
-get request to /api thgat gets all favorites
+<div class= 'container'>
+    <div id='title'>Title : <%= req.body.title%></div>
+    <div id='overview'>Overview : <%=req.body.overview%></div>
+    <div id='releaseDate'>Release Date : <%=req.body.release_date%></div>
+    <div id='Rating'>Rating : <%=req.body.vote_average%></div>
 <% include ./partials/footer.ejs %>
