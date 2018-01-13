@@ -24,21 +24,30 @@ console.log(jsonObject)%>
     </div>    
           
 
-        <button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
-        <%function myFunction() {location.reload();}%>
+       
 
         <br><br>
-        <button type="button" class= "btn btn-primary" onclick= 'pushToFavorites(<%=jsonObject.id%>)'>Save to favorites</button>
-        <br>
-        <br>
-        <script>
-        function pushToFavorites(id) {
+        <button type="button" class= "btn btn-primary" id="favoriteButton" onclick= 'pushToFavorites(<%=jsonObject%>)'>Save to favorites</button>
+        
+        <%  $('#favoriteButton').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+            method: 'POST',
+            url: '/api/favorites',
+            data: $(this).serialize(),
+            success: newFavoriteSuccess,
+            error: newFavoriteError
+    });
+  });%>
+
+ <button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
+        <%function myFunction() {location.reload();}%>
+       
    
         
 
     
-}
-</script>
+
 </div>
 
 <% include ./partials/footer.ejs %>

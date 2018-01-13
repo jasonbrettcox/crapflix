@@ -61,12 +61,7 @@ app.use(express.static('public'));
 
 var db = require('./models');
   
-  //get all movies, does not make sense, needs to be 
-  app.get('/api/movie', function (req, res){
-    db.Movie.find(function(err, movie){
-      res.json(movie);
-      });
-    });
+
   
   
   //update user somehow

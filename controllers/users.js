@@ -80,6 +80,42 @@ function getMovie(req, res){
 
 };
 
+//get all favorites
+app.get('/api/favorites', function (req, res) {
+  // send all favorites as JSON response --- should this be html?
+  db.Favorites.find(function(err, favorites){
+    if (err) { return console.log("index error: " + err); }
+    res.json(favorites);
+  });
+});
+
+// create new favorite
+app.post('/api/favorites', function (req, res) {
+  // create new favorite with form data (`req.body`)
+  var newFavorite = new db.Favorite(req.body);
+  // add newFavorite to database
+  newFavorite.save(function(err, book){
+    if (err) { return console.log("create error: " + err); }
+    console.log("created ", favorite.title);
+    res.json(favorite);
+  });
+});
+
+//delete a favorite, needs to be attached to a button
+app.delete('/api/favorites/:id', function (req, res) {
+  // get favorite id from url params (`req.params`)
+  console.log(req.params)
+  var favoriteId = req.params.id;
+
+  db.Favorite.findOneAndRemove({ _id: favoriteId }, function (err, deletedFavorite) {
+    res.json(deletedFavorite);
+  });
+});
+
+
+
+
+
 module.exports = {
   getLogin: getLogin,
   postLogin: postLogin ,
