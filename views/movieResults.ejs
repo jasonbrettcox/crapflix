@@ -16,7 +16,7 @@ console.log(jsonObject)%>
         <label for="resultReleaseDate">Release Date: </label>
         <input type="text" class="form-control form-control-lg" id="resultReleaseDate" value="<%=jsonObject.release_date %>"/>
         <label for="resultOverview">Plot Overview: </label>
-        <input type="text" class="form-control form-control-lg" id="resultPlotOverview" value="<%=jsonObject.overview %>"/>
+        <input type="text" class="form-control form-control-xl" id="resultPlotOverview" value="<%=jsonObject.overview %>"/>
         <label for="resultIMDB">IMDB Id: </label>
         <input type="text" class="form-control form-control-lg" id="resultIMDBId" value="<%=jsonObject.id %>"/>
         <label for="resultRating">Average Rating: </label>
@@ -25,13 +25,8 @@ console.log(jsonObject)%>
           
 
         <button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
-        <br>
-        <br>
-        <script>
-        function myFunction() {
-            location.reload();
-        }
-        </script>
+        <%function myFunction() {location.reload();}%>
+
         <br><br>
         <button type="button" class= "btn btn-primary" onclick= 'pushToFavorites(<%=jsonObject.id%>)'>Save to favorites</button>
         <br>

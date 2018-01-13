@@ -12,7 +12,7 @@ var request      = require('request');
 var myVar        = require('./models');
 var apiKey       = require('./models/env').apiKey;
 
-mongoose.connect('mongodb://localhost/local-authentication-with-passport', {useMongoClient : true}); //replace with my db
+mongoose.connect('mongodb://localhost/crapflix', {useMongoClient : true}); //replace with my db
 
 app.use(morgan('dev')); 
 app.use(cookieParser());
