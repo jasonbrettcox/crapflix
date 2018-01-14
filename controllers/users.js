@@ -70,9 +70,9 @@ function getMovie(req, res){
     if(!err && response.statusCode == 200){
         var jsonBody = JSON.parse(body);
         // console.log(jsonBody);
-        var jsonObject = jsonBody.results[Math.floor((Math.random() * 10) + 1)]
+        var jsonObject = jsonBody.results//[Math.floor((Math.random() * 10) + 1)]
         console.log(jsonObject)
-        res.render('movieResults.ejs', {jsonObject} );  
+        res.render('movieResults.ejs', {jsonObject});  
     } else if(err){
         res.send(err);
     }

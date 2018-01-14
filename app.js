@@ -12,6 +12,7 @@ var request      = require('request');
 var myVar        = require('./models');
 var apiKey       = require('./models/env').apiKey;
 
+
 mongoose.connect('mongodb://localhost/crapflix', {useMongoClient : true}); //replace with my db
 
 app.use(morgan('dev')); 
@@ -40,6 +41,7 @@ app.use(routes);
 
 //adding html endpoints for API
 
+//set root route
 app.get('/', function homepage(req, res) {
     res.render(__dirname + '/views/index.ejs');
       
@@ -52,6 +54,9 @@ app.get('/', function homepage(req, res) {
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
 app.use(express.static('public'));
+
+
+
 
 
 
@@ -85,3 +90,12 @@ app.listen(process.env.PORT || 3000, function () {
     console.log('Express server is up and running on http://localhost:3000/');
 
   });
+
+  // get all books
+app.get('/api/favorites', function (req, res) {
+  // send all books as JSON response
+  db.Favorites.find(function(err, favorite){
+    if (err) { return console.log("index error: " + err); }
+    res.json(favorites);
+  });
+});
