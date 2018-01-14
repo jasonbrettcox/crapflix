@@ -18,17 +18,17 @@
         <label for="resultOverview">Plot Overview: </label>
         <input type="text" class="form-control form-control-xl" id="resultPlotOverview" value="<%=jsonObject.overview %>"/>
         <label for="resultIMDB">IMDB Id: </label>
-        <input type="text" class="form-control form-control-lg" id="resultIMDBId" value="<%=jsonObject.id %>"/>
+        <input type="text" class="form-control form-control-lg" id="resultId" value="<%=jsonObject.id %>"/>
         <label for="resultRating">Average Rating: </label>
         <input type="text" class="form-control form-control-lg" id="resultRating" value="<%=jsonObject.vote_average%>"/>
     </div>    
-          
+</form>      
 
        
 
-        <br><br>
+<form method="post" action="/favorites">
         <button type="button" class= "btn btn-primary" id="favoriteButton" type='submit'>Save to favorites</button>
-        
+</form>    
  
 
  <button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>

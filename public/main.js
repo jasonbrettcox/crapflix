@@ -7,9 +7,31 @@ document.getElementById("favoriteButton").addEventListener("click", myFunction);
   }
 // $.ajax({
 //     type: "POST",
-//     url: "/api/save",
-//     data: data,
+//     url: "/favorites",
+//     data: formdata,
 //     success: success,
 //     dataType: dataType
 //   });
   
+  // - Put all form info in variable newFavorite
+  $('form').on('submit', function(event){
+      event.preventDefault();
+      let newFavorite= {
+          title: $("#resultTitle").val(),
+          release_date: $("#resultReleaseDate").val(),
+          id: $("#resultId").val(),
+          rating: $("#resultRating").val()
+      };
+      console.log(newBook);
+
+     // - Post newBook to den-super-crud
+      $.post("'mongodb://localhost/Flops'", newBook)//;
+        .done(function(data) {
+        console.log(data);
+      });
+        
+      // - Remove list of books, create new one
+      $("#books").empty();
+      showBooks();
+    
+    });
