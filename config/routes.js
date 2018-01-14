@@ -45,6 +45,7 @@ router.route("/movieResult")
 
 router.route("/favorites")
   .get(authenticatedUser, usersController.getFavorites)
+  .post(authenticatedUser, usersController.postFavorites)
 
   // router.route("/favorites") //?? how is this route set up?
   // .get(authenticatedUser, usersController.deleteFavorites)

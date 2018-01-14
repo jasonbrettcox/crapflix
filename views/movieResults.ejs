@@ -6,9 +6,9 @@
 <% console.log('testing') %>
 
 <div class="container">
-<p><h1>Here's a real turd:</h1></P>
-<form>
-    <div class="form-group">
+<p><h1>Flop incoming:</h1></P>
+<form id='movieForm' method="POST" action="/favorites/add">
+    <div class="formgroup">
         
         <label for="resultTitle">Title: </label>
         <input type="text" class="form-control form-control-lg" id="resultTitle"  value="<%=jsonObject.title %>"/>
@@ -21,18 +21,15 @@
         <input type="text" class="form-control form-control-lg" id="resultId" value="<%=jsonObject.id %>"/>
         <label for="resultRating">Average Rating: </label>
         <input type="text" class="form-control form-control-lg" id="resultRating" value="<%=jsonObject.vote_average%>"/>
-    </div>    
-</form>      
-
-       
-
-<form method="post" action="/favorites">
         <button type="button" class= "btn btn-primary" id="favoriteButton" type='submit'>Save to favorites</button>
+    </div>    
+     
+        
 </form>    
  
 
  <button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
-        <%function myFunction() {location.reload();}%>
+        <%function myFunction() {location.reload(); }%>
        
    
         

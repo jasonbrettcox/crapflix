@@ -39,6 +39,8 @@ app.use(function (req, res, next) {
 var routes = require('./config/routes');
 app.use(routes);
 
+// let Favorite = require('/models/favorite.ejs');
+
 //adding html endpoints for API
 
 //set root route
@@ -66,8 +68,20 @@ app.use(express.static('public'));
 
 var db = require('./models');
   
-
-  
+//get all favs
+app.get('/favorites', function (req, res) {
+  Favorites.find({}, function(err, articles){
+    if (err){
+      console.log(err);
+    } else {
+      res.render('favorites', {
+        title: 'Favorites',
+        favorites: favorites
+      });
+    }
+    });
+    
+  });
   
   //update user somehow
   // app.put('/api/user/:id', function (req, res){
@@ -91,9 +105,9 @@ app.listen(process.env.PORT || 3000, function () {
 
   });
 
-  // get all books
-app.get('/api/favorites', function (req, res) {
-  // send all books as JSON response
+  // get all  favorites route
+app.get('/favorites', function (req, res) {
+  // send all favorites as JSON response
   db.Favorites.find(function(err, favorite){
     if (err) { return console.log("index error: " + err); }
     res.json(favorites);

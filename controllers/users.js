@@ -65,12 +65,12 @@ function getMovie(req, res){
   console.log ('movie route was hit');
   
   request.get({
-    url: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + req.query.movie + "&language=en-US&page=1&include_adult=false&vote_count.gte=50&vote_average.gte=1.0&vote_average.lte=4.0&sort_by=vote_average.asc" 
+    url: "https://api.themoviedb.org/3/discover/movie?api_key=" + apiKey + "&query=" + req.query.movie + "&language=en-US&page=1&include_adult=false&vote_count.gte=10&vote_average.gte=1.0&vote_average.lte=4.0&sort_by=vote_average.asc" 
   },function(err, response, body){
     if(!err && response.statusCode == 200){
         var jsonBody = JSON.parse(body);
         // console.log(jsonBody);
-        var jsonObject = jsonBody.results//[Math.floor((Math.random() * 10) + 1)]
+        var jsonObject = jsonBody.results[Math.floor((Math.random() * 10) + 1)]
         console.log(jsonObject)
         res.render('movieResults.ejs', {jsonObject});  
     } else if(err){
@@ -82,19 +82,19 @@ function getMovie(req, res){
 
 //get all favorites
 function getFavorites(req, res){
-  console.log('get allfavorites houte hit');
+  res.render('favorites.ejs')
 }
 
-app.get('/api/favorites', function (req, res) {
-  // send all favorites as JSON response --- should this be html?
-  db.Favorites.find(function(err, favorites){
-    if (err) { return console.log("index error: " + err); }
-    res.json(favorites);
-  });
-});
+// app.get('/api/favorites', function (req, res) {
+//   // send all favorites as JSON response --- should this be html?
+//   db.Favorites.find(function(err, favorites){
+//     if (err) { return console.log("index error: " + err); }
+//     res.json(favorites);
+//   });
+// });
 
 // create new favorite
-function postFavorite(req, res){
+function postFavorites(req, res){
   console.log('post favorites houte hit');
 }
 app.post('/api/favorites', function (req, res) {
@@ -110,11 +110,7 @@ app.post('/api/favorites', function (req, res) {
 
 //delete a favorite, needs to be attached to a button
 
-function deleteFavorite(req, res){
-  console.log('post favorites houte hit');
-}
-app.delete('/api/favorites/:id', function (req, res) {
-  // get favorite id from url params (`req.params`)
+function deleteFavorites(req, res){
   console.log(req.params)
   var favoriteId = req.params.id;
 
@@ -122,6 +118,10 @@ app.delete('/api/favorites/:id', function (req, res) {
     res.json(deletedFavorite);
   
   });
+}
+app.delete('/favorites/:id', function (req, res) {
+  // get favorite id from url params (`req.params`)
+  
 });
 
 
@@ -136,7 +136,7 @@ module.exports = {
   search: search,
   home: home,
   getFavorites: getFavorites,
-  postFavorite: postFavorite,
-  deleteFavorite: deleteFavorite,
+  postFavorites: postFavorites,
+  deleteFavorites: deleteFavorites
 
 };
