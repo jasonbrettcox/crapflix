@@ -13,7 +13,7 @@ var myVar        = require('./models');
 var apiKey       = require('./models/env').apiKey;
 
 
-mongoose.connect('mongodb://localhost/Flops', {useMongoClient : true}); //replace with my db
+mongoose.connect('mongodb://localhost/Flops', {useMongoClient : true}); 
 
 app.use(morgan('dev')); 
 app.use(cookieParser());
@@ -70,7 +70,7 @@ var db = require('./models');
   
 //get all favs
 app.get('/favorites', function (req, res) {
-  Favorites.find({}, function(err, articles){
+  Favorites.find({}, function(err, favorites){
     if (err){
       console.log(err);
     } else {

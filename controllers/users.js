@@ -65,7 +65,7 @@ function getMovie(req, res){
   console.log ('movie route was hit');
   
   request.get({
-    url: "https://api.themoviedb.org/3/discover/movie?api_key=" + apiKey + "&query=" + req.query.movie + "&language=en-US&page=1&include_adult=false&vote_count.gte=10&vote_average.gte=1.0&vote_average.lte=4.0&sort_by=vote_average.asc" 
+    url: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + req.query.movie + "&language=en-US&page=1&include_adult=false&vote_count.gte=10&vote_average.gte=1.0&vote_average.lte=5.0&sort_by=vote_average.asc" 
   },function(err, response, body){
     if(!err && response.statusCode == 200){
         var jsonBody = JSON.parse(body);

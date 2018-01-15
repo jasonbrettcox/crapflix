@@ -4,7 +4,7 @@ $( document ).ready(function() {
   console.log( "ready!" );
   // - Create a list of all favorites as list items
 function showFavorites() {
-  var ajax = $.get('mongodb://localhost/Flops')//;
+  var ajax = $.get('mongodb://localhost/Flops.users.favorites')//;
     .done(function(data) {
       console.log(data);
       for (let i = 0; i < data.favorites.length; i++) {
@@ -30,7 +30,7 @@ showFavorites();
       console.log(newMovie);
 
      // - Post newBook to local database
-      $.post("'mongodb://localhost/Flops'", newFavorite)//;
+      $.post("'mongodb://localhost/Flops/favorites'", newFavorite)//this is wrong
         .done(function(data) {
         console.log(data);
       });
@@ -42,6 +42,8 @@ showFavorites();
     });
   }
 );
+
+module.exports = showFavorites;
 
 // $.ajax({
 //     type: "POST",
