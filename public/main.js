@@ -1,7 +1,5 @@
 
 
-console.log("main js is talking to me")
-
 $( document ).ready(function() {
  
   // - Create a list of all favorites as list items
@@ -24,28 +22,7 @@ function showFavorites() {
 
 //event listener for save to favorites button
 
-    $('#movieForm').on('submit', function(event){
-      console.log( "ready!" );
-      event.preventDefault();
-      let newFavorite= {
-          title: $("#resultTitle").val(),
-          release_date: $("#resultReleaseDate").val(),
-          overview: $("#resultPlotOverview").val(),
-          id: $("#resultId").val(),
-          rating: $("#resultRating").val(),
-          user_id: $("#currentUserId").val()
-      };
-      console.log(newFavorite);
-
-     // - Post newFavorite to local database
-      $.post("/api/favorites", newFavorite, function(favorite){
-        console.log(favorite);
-      })
-        
-      // - Remove list of favorites, create new one
-      // $("#favorites").empty();
-      // showFavorites ();
-    })    
+     
     });
 // $.ajax({
 //     type: "POST",
@@ -54,5 +31,27 @@ function showFavorites() {
 //     success: success,
 //     dataType: dataType
 //   });
+$('#movieForm').on('submit', function(event){
   
+     event.preventDefault();
+     console.log( "ready!" );
+     let newFavorite= {
+         title: $("#resultTitle").val(),
+         release_date: $("#resultReleaseDate").val(),
+         overview: $("#resultPlotOverview").val(),
+         id: $("#resultId").val(),
+         rating: $("#resultRating").val(),
+         user_id: $("#currentUserId").val()
+     };
+     console.log(newFavorite);
+
+    // - Post newFavorite to local database
+     $.post("/api/favorites", newFavorite, function(favorite){
+      // console.log(favorite);
+     })
+       
+     // - Remove list of favorites, create new one
+     // $("#favorites").empty();
+     // showFavorites ();
+   })  
   // - Put all form info in variable newFavorite

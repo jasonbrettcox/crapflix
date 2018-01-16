@@ -1,7 +1,7 @@
 
 
 <!--var randomNumber          = Math.floor((Math.random() * 10) + 1)-->
-<% console.log(jsonObject)%>
+<!--<% console.log(jsonObject)%>-->
 <% include ./partials/header.ejs %>
 
 
@@ -24,13 +24,13 @@
         <input type="hidden" id="currentUserId" name="user_id" value="<%=currentUser['_id'] %>"/>
         <button class= "btn btn-primary" id="favoriteButton" type='submit'>Save to favorites</button>
     </div>    
-     
+   <button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
+        <%function myFunction() {location.reload(); }%>   
         
 </form>    
  
 
- <button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
-        <%function myFunction() {location.reload(); }%>
+
        
    
         

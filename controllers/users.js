@@ -65,8 +65,8 @@ function createFavorite(req, res){
   console.log('xxx123')
   console.log(req.body)
   db.Favorite.create(req.body, function(err, favorites){
+    console.log('db create is working')
     if (err) { return 'create favorite error' + err }
-   ;
     res.json(favorites);
   }) 
 }
@@ -89,7 +89,7 @@ function getMovie(req, res){
         }
         // console.log(jsonBody);
         var jsonObject = jsonBody.results[Math.floor((Math.random() * 10) + 1)]
-        console.log(jsonObject)
+        // console.log(jsonObject)
         res.render('movieResults.ejs', {jsonObject});  
     } else if(err){
         res.send(err);

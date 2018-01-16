@@ -4,7 +4,7 @@ Schema = mongoose.Schema;
 var FavoriteSchema = new Schema({
 title: String,
 overview: String,
-release_date: Number,
+release_date: String,
 vote_average : Number,
 user_id: String 
 
