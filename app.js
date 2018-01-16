@@ -9,7 +9,7 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 var handlebars   = require('handlebars');
 var request      = require('request');
-var apiKey       = require('./models/env').apiKey;
+var apiKey       = process.env.apiKey || require('./models/env').apiKey;
 
 
 // mongoose.connect('mongodb://localhost/Flops', {useMongoClient : true}); 
