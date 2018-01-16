@@ -118,7 +118,7 @@ app.listen(process.env.PORT || 3000, function () {
   // get all  favorites route
 app.get('/favorites', function (req, res) {
   // send all favorites as JSON response
-  db.Favorites.find(function(err, favorites){
+  db.Favorite.find(function(err, favorites){
     if (err) { return console.log("index error: " + err); }
     console.log(typeof(favorites));
     console.log(favorites)

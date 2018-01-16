@@ -5,7 +5,8 @@ var MovieSchema = new Schema({
 title: String,
 overview: String,
 release_date: Number,
-vote_average : Number
+vote_average : Number,
+id: Number
 
 });
 

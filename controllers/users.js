@@ -85,6 +85,7 @@ function getMovie(req, res){
           date: response.body.release_date,
           overview: response.body.overview,
           rating: response.body.vote_average,
+          id: response.body.id
 
         }
         // console.log(jsonBody);
@@ -100,7 +101,7 @@ function getMovie(req, res){
 
 //get all favorites
 function getFavorites(req, res){
-  res.render('favorites.ejs', {jsonBody}
+  res.render('favorites.ejs', {favorites}
   )};
 
 // app.get('/api/favorites', function (req, res) {
@@ -142,6 +143,7 @@ module.exports = {
   home: home,
   getFavorites: getFavorites,
   deleteFavorites: deleteFavorites,
-  createFavorite: createFavorite
+  createFavorite: createFavorite,
+  
 
 };

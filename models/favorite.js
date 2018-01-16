@@ -6,6 +6,7 @@ title: String,
 overview: String,
 release_date: String,
 vote_average : Number,
+id: Number,
 user_id: String 
 
 });
