@@ -9,11 +9,10 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 var handlebars   = require('handlebars');
 var request      = require('request');
-var myVar        = require('./models');
 var apiKey       = require('./models/env').apiKey;
 
 
-mongoose.connect('mongodb://localhost/Flops', {useMongoClient : true}); 
+// mongoose.connect('mongodb://localhost/Flops', {useMongoClient : true}); 
 
 app.use(morgan('dev')); 
 app.use(cookieParser());
@@ -76,7 +75,7 @@ app.use(express.static('public'));
  * DATABASE *
  ************/
 
-var db = require('./models');
+var db = require('./models/');
   
 //get all favs
 // app.get('/favorites', function (req, res) {
