@@ -29,7 +29,7 @@ $('#movieForm').on('submit', function(event){
          release_date: $("#resultReleaseDate").val(),
          overview: $("#resultPlotOverview").val(),
          id: $("#resultId").val(),
-         rating: $("#resultRating").val(),
+         vote_average: $("#resultRating").val(),
          user_id: $("#currentUserId").val()
      };
      console.log(newFavorite);
