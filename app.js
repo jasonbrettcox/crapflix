@@ -120,6 +120,8 @@ app.get('/favorites', function (req, res) {
   // send all favorites as JSON response
   db.Favorites.find(function(err, favorites){
     if (err) { return console.log("index error: " + err); }
-    res.json(favorites);
+    console.log(typeof(favorites));
+    console.log(favorites)
+    res.render("favorites.ejs", {favorites});
   });
 });

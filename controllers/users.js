@@ -100,8 +100,8 @@ function getMovie(req, res){
 
 //get all favorites
 function getFavorites(req, res){
-  res.render('favorites.ejs')
-}
+  res.render('favorites.ejs', {jsonBody}
+  )};
 
 // app.get('/api/favorites', function (req, res) {
 //   // send all favorites as JSON response --- should this be html?
