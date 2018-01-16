@@ -79,19 +79,19 @@ app.use(express.static('public'));
 var db = require('./models');
   
 //get all favs
-app.get('/api/favorites', function (req, res) {
-  db.Favorites.find({}, function(err, favorites){
-    if (err){
-      console.log(err);
-    } else {
-      res.render('favorites', {
-        title: 'Favorites',
-        favorites: favorites
-      });
-    }
-    });
+// app.get('/favorites', function (req, res) {
+//   db.Favorites.find({}, function(err, favorites){
+//     if (err){
+//       console.log(err);
+//     } else {
+//       res.render('favorites', {
+//         title: 'Favorites',
+//         favorites: favorites
+//       });
+//     }
+//     });
     
-  });
+//   });
   
   //update user somehow
   // app.put('/api/user/:id', function (req, res){
@@ -102,12 +102,12 @@ app.get('/api/favorites', function (req, res) {
   // });
   
   //delete route needs to delete user account or favorite
-//   app.delete('/api/sandwich/:id', function (req, res){
-//     db.Sandwich.remove({_id: req.params.id}, function (err, sandwich) {
-//   if (err) {return console.log("you suck", + err)}
-//       res.json(sandwich);
-//     });      
-//   });
+  app.delete('/api/favorite/:id', function (req, res){
+    db.Favorite.remove({id: req.params.id}, function (err, favorite) {
+  if (err) {return console.log("having trouble deleting...", + err)}
+      res.json(favorite);
+    });      
+  });
 
 
 app.listen(process.env.PORT || 3000, function () {
@@ -115,13 +115,4 @@ app.listen(process.env.PORT || 3000, function () {
 
   });
 
-  // get all  favorites route
-app.get('/favorites', function (req, res) {
-  // send all favorites as JSON response
-  db.Favorite.find(function(err, favorites){
-    if (err) { return console.log("index error: " + err); }
-    console.log(typeof(favorites));
-    console.log(favorites)
-    res.render("favorites.ejs", {favorites});
-  });
-});
+ 

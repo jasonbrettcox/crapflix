@@ -101,8 +101,17 @@ function getMovie(req, res){
 
 //get all favorites
 function getFavorites(req, res){
-  res.render('favorites.ejs', {favorites}
-  )};
+
+    // send all favorites as JSON response
+    db.Favorite.find(function(err, favorites){
+      if (err) { return console.log("index error: " + err); }
+      console.log(typeof(favorites));
+      console.log(favorites);
+      res.render("favorites.ejs", {favorites});
+ }) };
+   // get all  favorites route
+
+
 
 // app.get('/api/favorites', function (req, res) {
 //   // send all favorites as JSON response --- should this be html?
@@ -113,22 +122,16 @@ function getFavorites(req, res){
 // });
 
 
+//delete one 
+function deleteFavorite(req, res){
 
-//delete a favorite, needs to be attached to a button
-
-function deleteFavorites(req, res){
-  console.log(req.params)
-  var favoriteId = req.params.id;
-
-  db.Favorite.findOneAndRemove({ _id: favoriteId }, function (err, deletedFavorite) {
+// app.delete('/favorites/:id', function deleteFavorite(req, res) {
+//   // mongoose remove find correct user, find the movie by id, delete that one from collection
+  db.Favorite.findByIdAndRemove({ _id: favoriteId }, function (err, deletedFavorite) {
     res.json(deletedFavorite);
-  
-  });
+  })
 }
-app.delete('/favorites/:id', function (req, res) {
-  // get favorite id from url params (`req.params`)
-  
-});
+// });
 
 
 module.exports = {
@@ -142,8 +145,6 @@ module.exports = {
   search: search,
   home: home,
   getFavorites: getFavorites,
-  deleteFavorites: deleteFavorites,
-  createFavorite: createFavorite,
-  
-
+  deleteFavorite: deleteFavorite,
+  createFavorite: createFavorite
 };

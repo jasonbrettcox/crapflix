@@ -4,7 +4,7 @@ $( document ).ready(function() {
  
   // - Create a list of all favorites as list items
 function showFavorites() {
-  $.get('/api/favorites', function(favorites){
+  $.get('/favorites', function(favorites){
     console.log('888888')
     {
       // console.log(data);
@@ -17,18 +17,9 @@ function showFavorites() {
 }
 
 showFavorites();
+});
 
-//event listener for save to favorites button
-
-     
-    });
-// $.ajax({
-//     type: "POST",
-//     url: "/favorites",
-//     data: formdata,
-//     success: success,
-//     dataType: dataType
-//   });
+//save favorite to db
 $('#movieForm').on('submit', function(event){
   
      event.preventDefault();
@@ -52,4 +43,26 @@ $('#movieForm').on('submit', function(event){
      $("#favorites").empty();
      showFavorites ();
    })  
-  // - Put all form info in variable newFavorite
+ 
+
+   //delete a favorite -ajax request - success function will re-render the list finds user id first then the favorite within that user
+
+$('#deleteButton').on('submit', function(event){
+  event.preventDefault();
+
+  $.ajax({
+    url: '/api/favorites',
+    type: 'DELETE',
+    success: function() {
+      window.location.reload(true);
+    }
+});
+  
+//   function deleteFavorite(req, res){
+//   console.log('9999999')
+//   var favoriteId = req.params.id;
+
+
+// });
+// }
+});

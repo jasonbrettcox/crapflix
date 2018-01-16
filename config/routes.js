@@ -43,13 +43,15 @@ router.route("/home")
 router.route("/movieResult")
   .get(authenticatedUser, usersController.getMovie)
 
-router.route("/api/favorites")
+router.route("/favorites")
   .get(authenticatedUser, usersController.getFavorites)
   // .post(authenticatedUser, usersController.postFavorites)
 
 router.route('/api/favorites')
   .post(authenticatedUser, usersController.createFavorite)
 
-  // router.route("/favorites") //?? how is this route set up?
-  // .get(authenticatedUser, usersController.deleteFavorites)
+router.route('/api/favorites')
+  .delete(authenticatedUser, usersController.deleteFavorite)
+  router.route("/favorites") //?? how is this route set up?
+  .get(authenticatedUser, usersController.getFavorites)
 module.exports = router
