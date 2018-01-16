@@ -2,7 +2,7 @@ var passport      = require("passport");
 var express       = require('express');
 var app           = express();
 var request       = require("request");
-var apiKey       = require('../models/env').apiKey;
+var apiKey       = process.env.apiKey || require('../models/env').apiKey;
 var db            = require('../models');
 // GET /signup
 function getSignup(request, response) {
