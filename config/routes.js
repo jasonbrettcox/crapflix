@@ -50,8 +50,8 @@ router.route("/favorites")
 router.route('/api/favorites')
   .post(authenticatedUser, usersController.createFavorite)
 
-router.route('/api/favorites')
+router.route('/api/favorites/:id')
   .delete(authenticatedUser, usersController.deleteFavorite)
-  router.route("/favorites") //?? how is this route set up?
+router.route("/favorites") //?? how is this route set up?
   .get(authenticatedUser, usersController.getFavorites)
 module.exports = router

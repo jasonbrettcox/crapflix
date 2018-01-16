@@ -123,11 +123,12 @@ function getFavorites(req, res){
 
 
 //delete one 
-function deleteFavorite(req, res){
+function deleteFavorite(req, res, next){
 
 // app.delete('/favorites/:id', function deleteFavorite(req, res) {
 //   // mongoose remove find correct user, find the movie by id, delete that one from collection
-  db.Favorite.findByIdAndRemove({ _id: favoriteId }, function (err, deletedFavorite) {
+  db.Favorite.findOneAndRemove({ id: req.params.id }, function (err, deletedFavorite) {
+    console.log('inside delete function')
     res.json(deletedFavorite);
   })
 }

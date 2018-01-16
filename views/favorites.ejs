@@ -20,7 +20,7 @@
                 <label for="favoritesRating">Average Rating: </label>
                 <input type="text" class="form-control form-control-lg" id="favoritesRating" value="<%=favorites[i].vote_average%>"/>
             
-                <button class= "btn btn-primary" id="deleteButton" type='submit'>Delete</button>
+                <button class= "btn btn-primary" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" type='submit'>Delete</button>
             </div>      
             <%  }; %>     
         </form>

@@ -1,11 +1,35 @@
 
 
 $( document ).ready(function() {
+
+
+     //delete a favorite -ajax request - success function will re-render the list finds user id first then the favorite within that user
+var deleteButtons= $('button');
+console.log(deleteButtons)
+   for (i=0; i< deleteButtons.length; i++){
+     deleteButtons[i].addEventListener('click', function(event){
+      event.preventDefault();
+        console.log((this).id)
+      $.ajax({
+        url: '/api/favorites/'+(this).id,
+        method: 'DELETE',
+        success: function() {
+          console.log('i am success')
+          window.location.reload(true);
+        
+        },
+        error: function() {
+          console.log('i am error')
+        }
+        })
+    });
+     }
+    });
  
   // - Create a list of all favorites as list items
 function showFavorites() {
   $.get('/favorites', function(favorites){
-    console.log('888888')
+    // console.log('888888')
     {
       // console.log(data);
       for (let i = 0; i < favorites.length; i++) {
@@ -17,7 +41,7 @@ function showFavorites() {
 }
 
 showFavorites();
-});
+;
 
 //save favorite to db
 $('#movieForm').on('submit', function(event){
@@ -45,24 +69,13 @@ $('#movieForm').on('submit', function(event){
    })  
  
 
-   //delete a favorite -ajax request - success function will re-render the list finds user id first then the favorite within that user
 
-$('#deleteButton').on('submit', function(event){
-  event.preventDefault();
+    
 
-  $.ajax({
-    url: '/api/favorites',
-    type: 'DELETE',
-    success: function() {
-      window.location.reload(true);
-    }
-});
+
   
 //   function deleteFavorite(req, res){
 //   console.log('9999999')
 //   var favoriteId = req.params.id;
-
-
 // });
 // }
-});

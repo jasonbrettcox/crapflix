@@ -12,7 +12,7 @@
     <script src="main.js"></script>
   </head>
   <body>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -22,12 +22,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand navbar-default" style="background-color: tan "p-3 mb-2 bg-warning text-dark" href="/"> Hot Flops: only bad movies</a>
+          <a class="navbar-brand navbar-inverse"  "p-3 mb-2 bg-warning text-dark" href="/"> Hot Flops: only bad movies</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="user-menu">
-          <ul class="nav navbar-nav" style="background-color: tan">
+          <ul class="nav navbar-nav" >
             <% if (currentUser) {%>
               <li><a href="/logout">Logout <%= currentUser.local.email %></a></li>
               <li><a href="/search">Search </a></li>
