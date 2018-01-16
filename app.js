@@ -79,8 +79,8 @@ app.use(express.static('public'));
 var db = require('./models');
   
 //get all favs
-app.get('/favorites', function (req, res) {
-  Favorites.find({}, function(err, favorites){
+app.get('/api/favorites', function (req, res) {
+  db.Favorites.find({}, function(err, favorites){
     if (err){
       console.log(err);
     } else {
@@ -118,7 +118,7 @@ app.listen(process.env.PORT || 3000, function () {
   // get all  favorites route
 app.get('/favorites', function (req, res) {
   // send all favorites as JSON response
-  db.Favorites.find(function(err, favorite){
+  db.Favorites.find(function(err, favorites){
     if (err) { return console.log("index error: " + err); }
     res.json(favorites);
   });

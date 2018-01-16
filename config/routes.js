@@ -43,7 +43,7 @@ router.route("/home")
 router.route("/movieResult")
   .get(authenticatedUser, usersController.getMovie)
 
-router.route("/favorites")
+router.route("/api/favorites")
   .get(authenticatedUser, usersController.getFavorites)
   // .post(authenticatedUser, usersController.postFavorites)
 

@@ -10,15 +10,13 @@ function showFavorites() {
       // console.log(data);
       for (let i = 0; i < favorites.length; i++) {
          // - Makes li ul for each favorite, with title, author, releaseDate, & image as li
-         $('#favorites').append($('<li><ul id="' + favorites[i]._id + '"><li>' + favorites[i].title + '</li><li>' + favorites[i].overview + '</li><li>' + favorites[i].releaseDate + '</li><li>' + books[i].vote_average + '"></li></ul></li>'));
+         $('#favorites').append($('<li><ul id="' + favorites[i]._id + '"><li>' + favorites[i].title + '</li><li>' + favorites[i].overview + '</li><li>' + favorites[i].releaseDate + '</li><li>' + favorites[i].vote_average + '"></li></ul></li>'));
        }
     };
   });
-    
-  
 }
 
-// showFavorites();
+showFavorites();
 
 //event listener for save to favorites button
 
@@ -50,8 +48,8 @@ $('#movieForm').on('submit', function(event){
       // console.log(favorite);
      })
        
-     // - Remove list of favorites, create new one
-     // $("#favorites").empty();
-     // showFavorites ();
+     //Remove list of favorites, create new one
+     $("#favorites").empty();
+     showFavorites ();
    })  
   // - Put all form info in variable newFavorite

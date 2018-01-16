@@ -6,4 +6,4 @@ mongoose.connect( process.env.MONGODB_URI ||
 
 module.exports.Movie = require("./movie.js");
 module.exports.User = require("./user.js");
-module.exports.Favorite = require("./favorite.js");
+module.exports.Favorites = require("./favorite.js");
