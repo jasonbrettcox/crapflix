@@ -22,13 +22,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand navbar-default" style="background-color: tan "p-3 mb-2 bg-warning text-dark" href="/">Flops: one bad movie at a time</a>
+          <a class="navbar-brand navbar-default" style="background-color: tan "p-3 mb-2 bg-warning text-dark" href="/"> Hot Flops: only bad movies</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="user-menu">
           <ul class="nav navbar-nav" style="background-color: tan">
-            <li><a href="/secret">Secret</a></li>
             <% if (currentUser) {%>
               <li><a href="/logout">Logout <%= currentUser.local.email %></a></li>
               <li><a href="/search">Search </a></li>

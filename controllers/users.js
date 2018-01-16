@@ -1,9 +1,9 @@
-var passport      = require("passport")
+var passport      = require("passport");
 var express       = require('express');
 var app           = express();
 var request       = require("request");
 var apiKey       = require('../models/env').apiKey;
-
+var db            = require('../models');
 // GET /signup
 function getSignup(request, response) {
   response.render('signup.ejs', { message: request.flash('signupMessage') });
@@ -60,7 +60,18 @@ function home(request, response){
 }
 
 
-//get one movie searched by keyword
+//logged in, create new favorite
+function createFavorite(req, res){
+  console.log('xxx123')
+  console.log(req.body)
+  db.Favorite.create(req.body, function(err, favorites){
+    if (err) { return 'create favorite error' + err }
+   ;
+    res.json(favorites);
+  }) 
+}
+
+//get one movie searched by keyword - api call
 function getMovie(req, res){
   console.log ('movie route was hit');
   
@@ -69,6 +80,13 @@ function getMovie(req, res){
   },function(err, response, body){
     if(!err && response.statusCode == 200){
         var jsonBody = JSON.parse(body);
+        let favorite = {
+          title : response.body.title,
+          date: response.body.release_date,
+          overview: response.body.overview,
+          rating: response.body.vote_average,
+
+        }
         // console.log(jsonBody);
         var jsonObject = jsonBody.results[Math.floor((Math.random() * 10) + 1)]
         console.log(jsonObject)
@@ -93,20 +111,7 @@ function getFavorites(req, res){
 //   });
 // });
 
-// create new favorite
-function postFavorites(req, res){
-  console.log('post favorites houte hit');
-}
-app.post('/api/favorites', function (req, res) {
-  // create new favorite with form data (`req.body`)
-  var newFavorite = new db.Favorite(req.body);
-  // add newFavorite to database
-  newFavorite.save(function(err, book){
-    if (err) { return console.log("create error: " + err); }
-    console.log("created ", favorite.title);
-    res.json(favorite);
-  });
-});
+
 
 //delete a favorite, needs to be attached to a button
 
@@ -136,7 +141,7 @@ module.exports = {
   search: search,
   home: home,
   getFavorites: getFavorites,
-  postFavorites: postFavorites,
-  deleteFavorites: deleteFavorites
+  deleteFavorites: deleteFavorites,
+  createFavorite: createFavorite
 
 };

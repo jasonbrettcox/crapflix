@@ -3,11 +3,11 @@
 <!--var randomNumber          = Math.floor((Math.random() * 10) + 1)-->
 <% console.log(jsonObject)%>
 <% include ./partials/header.ejs %>
-<% console.log('testing') %>
+
 
 <div class="container">
 <p><h1>Flop incoming:</h1></P>
-<form id='movieForm' method="POST" action="/favorites/add">
+<form id='movieForm'>
     <div class="formgroup">
         
         <label for="resultTitle">Title: </label>
@@ -21,7 +21,8 @@
         <input type="text" class="form-control form-control-lg" id="resultId" value="<%=jsonObject.id %>"/>
         <label for="resultRating">Average Rating: </label>
         <input type="text" class="form-control form-control-lg" id="resultRating" value="<%=jsonObject.vote_average%>"/>
-        <button type="button" class= "btn btn-primary" id="favoriteButton" type='submit'>Save to favorites</button>
+        <input type="hidden" id="currentUserId" name="user_id" value="<%=currentUser['_id'] %>"/>
+        <button class= "btn btn-primary" id="favoriteButton" type='submit'>Save to favorites</button>
     </div>    
      
         

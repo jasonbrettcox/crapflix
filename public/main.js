@@ -1,50 +1,52 @@
+
+
 console.log("main js is talking to me")
 
 $( document ).ready(function() {
-  console.log( "ready!" );
+ 
   // - Create a list of all favorites as list items
 function showFavorites() {
-  var ajax = $.get('mongodb://localhost/Flops.users.favorites')//;
-    .done(function(data) {
-      console.log(data);
-      for (let i = 0; i < data.favorites.length; i++) {
+  $.get('/api/favorites', function(favorites){
+    console.log('888888')
+    {
+      // console.log(data);
+      for (let i = 0; i < favorites.length; i++) {
          // - Makes li ul for each favorite, with title, author, releaseDate, & image as li
-         $('#favorites').append($('<li><ul id="' + data.favorites[i]._id + '"><li>' + data.favorites[i].title + '</li><li>' + data.favorites[i].overview + '</li><li>' + data.favorites[i].releaseDate + '</li><li>' + data.books[i].vote_average + '"></li></ul></li>'));
+         $('#favorites').append($('<li><ul id="' + favorites[i]._id + '"><li>' + favorites[i].title + '</li><li>' + favorites[i].overview + '</li><li>' + favorites[i].releaseDate + '</li><li>' + books[i].vote_average + '"></li></ul></li>'));
        }
-    });
+    };
+  });
+    
+  
 }
 
-showFavorites();
+// showFavorites();
 
 //event listener for save to favorites button
 
-    $('movieForm').on('submit', function(event){
+    $('#movieForm').on('submit', function(event){
+      console.log( "ready!" );
       event.preventDefault();
       let newFavorite= {
           title: $("#resultTitle").val(),
           release_date: $("#resultReleaseDate").val(),
           overview: $("#resultPlotOverview").val(),
           id: $("#resultId").val(),
-          rating: $("#resultRating").val()
+          rating: $("#resultRating").val(),
+          user_id: $("#currentUserId").val()
       };
-      console.log(newMovie);
+      console.log(newFavorite);
 
-     // - Post newBook to local database
-      $.post("'mongodb://localhost/Flops/favorites'", newFavorite)//this is wrong
-        .done(function(data) {
-        console.log(data);
-      });
+     // - Post newFavorite to local database
+      $.post("/api/favorites", newFavorite, function(favorite){
+        console.log(favorite);
+      })
         
-      // - Remove list of books, create new one
-      $("#favorites").empty();
-      showFavorites ();
-    
+      // - Remove list of favorites, create new one
+      // $("#favorites").empty();
+      // showFavorites ();
+    })    
     });
-  }
-);
-
-module.exports = showFavorites;
-
 // $.ajax({
 //     type: "POST",
 //     url: "/favorites",
@@ -54,4 +56,3 @@ module.exports = showFavorites;
 //   });
   
   // - Put all form info in variable newFavorite
-  

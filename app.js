@@ -49,6 +49,16 @@ app.get('/', function homepage(req, res) {
       
   });
 
+  // app.get('/', function favorites(req, res) {
+  //   res.render(__dirname + '/views/favorites.ejs');
+      
+  // });
+
+  // app.post('/', function favorites(req, res) {
+  //   res.render(__dirname + '/views/favorites.ejs');
+      
+  // });
+
   /**********
  * ROUTES *
  **********/

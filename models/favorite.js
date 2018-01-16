@@ -5,7 +5,8 @@ var FavoriteSchema = new Schema({
 title: String,
 overview: String,
 release_date: Number,
-vote_average : Number
+vote_average : Number,
+user_id: String 
 
 });
 
