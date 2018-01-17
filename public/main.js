@@ -4,7 +4,7 @@ $( document ).ready(function() {
 
 
      //delete a favorite -ajax request - success function will re-render the list finds user id first then the favorite within that user
-var deleteButtons= $('button');
+var deleteButtons= $('.delete');
 console.log(deleteButtons)
    for (i=0; i< deleteButtons.length; i++){
      deleteButtons[i].addEventListener('click', function(event){
