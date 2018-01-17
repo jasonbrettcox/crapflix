@@ -1,0 +1,54 @@
+body, html {
+    height: 100%;
+}
+.bg { 
+    /* The image used */
+    background-image: url('../img/theaterseats.jpg');
+    
+
+    /* Full height */
+
+    height: 700px; 
+    width: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.lead{
+color: white;
+
+}
+
+#hotflops{
+    color: white;
+}
+
+.bg-login{
+    
+        /* The image used */
+        background-image: url('../img/theaterseats.jpg');
+      
+    
+        /* Full height */
+    
+        height: 700px; 
+        width: 100%;
+    
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+.bg-login-text{
+    width: 70%;
+    color: white;
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.searchByKeyword{
+    width: 70%;
+}
