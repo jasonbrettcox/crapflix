@@ -22,36 +22,37 @@ router.route('/')
 
 router.route('/signup')
   .get(usersController.getSignup)
-  .post(usersController.postSignup)
+  .post(usersController.postSignup);
 
 router.route('/login')
   .get(usersController.getLogin)
-  .post(usersController.postLogin)
+  .post(usersController.postLogin);
 
 router.route("/logout")
-  .get(usersController.getLogout)
+  .get(usersController.getLogout);
 
 router.route("/secret")
-  .get(authenticatedUser, usersController.secret)
+  .get(authenticatedUser, usersController.secret);
 
 router.route("/search")
-  .get(authenticatedUser, usersController.search)
+  .get(authenticatedUser, usersController.search);
   
 router.route("/home")
-  .get(authenticatedUser, usersController.home)
+  .get(authenticatedUser, usersController.home);
 
 router.route("/movieResult")
-  .get(authenticatedUser, usersController.getMovie)
+  .get(authenticatedUser, usersController.getMovie);
 
 router.route("/favorites")
-  .get(authenticatedUser, usersController.getFavorites)
+  .get(authenticatedUser, usersController.getFavorites);
   // .post(authenticatedUser, usersController.postFavorites)
 
 router.route('/api/favorites')
-  .post(authenticatedUser, usersController.createFavorite)
+  .post(authenticatedUser, usersController.createFavorite);
 
 router.route('/api/favorites/:id')
-  .delete(authenticatedUser, usersController.deleteFavorite)
+  .delete(authenticatedUser, usersController.deleteFavorite);
+
 router.route("/favorites") //?? how is this route set up?
-  .get(authenticatedUser, usersController.getFavorites)
+  .get(authenticatedUser, usersController.getFavorites);
 module.exports = router
