@@ -54,7 +54,8 @@ $('#movieForm').on('submit', function(event){
          overview: $("#resultPlotOverview").val(),
          id: $("#resultId").val(),
          vote_average: $("#resultRating").val(),
-         user_id: $("#currentUserId").val()
+         user_id: $("#currentUserId").val(),
+         comment: $("#resultComment").val()
      };
      console.log(newFavorite);
 
@@ -68,9 +69,37 @@ $('#movieForm').on('submit', function(event){
      showFavorites ();
    })  
  
+//update favorite
 
+$(document).on('submit', '#favoritesForm',  function(event){
+     event.preventDefault();
+     console.log( "ready!" );
+    //  console.log(this) 
+     console.log($("#favoritesComment", this).val())
+     let updatedFavorite= {
+         title: $("#favoritesTitle").val(),
+         release_date: $("#favoritesReleaseDate").val(),
+         overview: $("#favoritesPlotOverview").val(),
+         id: $("#favoritesId").val(),
+         vote_average: $("#favoritesRating").val(),
+         user_id: $("#currentUserId").val(),
+         comment: $("#favoritesComment", this).val()
+     };
+    //  console.log(updatedFavorite);
 
-    
+    // - Post newFavorite to local database
+     $.ajax({
+       url: "/api/favorites/" +(this).id,
+       type: 'PUT',
+       data: updatedFavorite,
+       success:  function(favorite){
+      console.log(favorite);
+     }})
+       
+     //Remove list of favorites, create new one
+     $("#favorites").empty();
+     showFavorites ();
+   })  
 
 
   

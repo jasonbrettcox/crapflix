@@ -43,16 +43,22 @@ router.route("/home")
 router.route("/movieResult")
   .get(authenticatedUser, usersController.getMovie);
 
+  // get all favorites
 router.route("/favorites")
   .get(authenticatedUser, usersController.getFavorites);
-  // .post(authenticatedUser, usersController.postFavorites)
 
+//post a favorite
 router.route('/api/favorites')
   .post(authenticatedUser, usersController.createFavorite);
 
+  //delete a favorite by id
 router.route('/api/favorites/:id')
   .delete(authenticatedUser, usersController.deleteFavorite);
 
-router.route("/favorites") //?? how is this route set up?
+router.route("/favorites") 
   .get(authenticatedUser, usersController.getFavorites);
+
+//update route fulfilled via adding commenmts
+router.route('/api/favorites/:id')
+  .put(authenticatedUser, usersController.updateFavorite)
 module.exports = router

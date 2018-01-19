@@ -4,27 +4,30 @@
 
 <div class="container">
 <p><h1>Favorite Hot Flops:</h1></P>
-<form id='favoritesForm'>
-    <% for (i=0; i< favorites.length; i++) { %>
+<% for (i=0; i< favorites.length; i++) { %>
+    <form id='favoritesForm' data-id="<%=favorites[i].id %>">
         <div class="formgroup">
-                
+            
                 <label for="favoritesTitle">Title: </label>
                 <input type="text" class="form-control form-control-lg" id="favoritesTitle"  value="<%=favorites[i].title %>"/>
                 <!--Poster:  <%=favorites.poster_path%><br>-->
                 <label for="favoritesReleaseDate">Release Date: </label>
                 <input type="text" class="form-control form-control-lg" id="favoritesReleaseDate" value="<%=favorites[i].release_date %>"/>
                 <label for="favoritesOverview">Plot Overview: </label>
-                <input type="text" class="form-control form-control-xl" id="favoritesPlotOverview" value="<%=favorites[i].overview %>"/>
+                <input type="textarea" class="form-control form-control-xl" id="favoritesPlotOverview" value="<%=favorites[i].overview %>"/>
                 <label for="favoritesIMDB">IMDB Id: </label>
                 <input type="text" class="form-control form-control-lg" id="favoritesId" value="<%=favorites[i].id %>"/>
                 <label for="favoritesRating">Average Rating: </label>
-                <input type="text" class="form-control form-control-lg" id="favoritesRating" value="<%=favorites[i].vote_average%>"/>
-            
+                <input type="text" class="form-control form-control-lg" id="favoritesRating" value="<%=favorites[i].vote_average%>"/>                 
                 <button class= "btn btn-primary delete" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" type='submit'>Delete</button>
-            </div>      
-            <%  }; %>     
+                   <label for="favoritesRating">Comments: </label>
+                <input type="textarea" class="form-control form-control-lg" id="favoritesComment" data-id="<%=favorites[i].id %>" value=""/>
+            <div class="formgroup">
+                <button class= "btn btn-primary update" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" >Add Comment</button>       
+            </div>
+         </div>
         </form>
-  
+     <%  }; %> 
      
 <script type="text/javascript" src="main.js"></script>
 <% include ./partials/footer.ejs %>

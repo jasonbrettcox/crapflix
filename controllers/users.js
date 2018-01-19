@@ -132,7 +132,18 @@ function deleteFavorite(req, res, next){
     res.json(deletedFavorite);
   })
 }
-// });
+
+//update with a comment
+function updateFavorite(req, res, next){
+  console.log('999999')
+  db.Favorite.findOneAndUpdate({ id: req.params.id }, function (err, updatedFavorite){
+    req.body
+});
+} 
+   
+//     res.json(updatedFavorite);
+//   })
+// }
 
 
 module.exports = {
@@ -147,5 +158,6 @@ module.exports = {
   home: home,
   getFavorites: getFavorites,
   deleteFavorite: deleteFavorite,
-  createFavorite: createFavorite
+  createFavorite: createFavorite,
+  updateFavorite: updateFavorite
 };
