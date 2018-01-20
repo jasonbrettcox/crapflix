@@ -17,29 +17,37 @@ function authenticatedUser(req, res, next) {
   res.redirect('/');
 }
 
+//show  splash page
 router.route('/')
   .get(staticsController.home);
 
+//route for signup functionality
 router.route('/signup')
   .get(usersController.getSignup)
   .post(usersController.postSignup);
 
+//route for actual login function
 router.route('/login')
   .get(usersController.getLogin)
   .post(usersController.postLogin);
 
+//logout and, now that we are logged out, send back to splash page
 router.route("/logout")
   .get(usersController.getLogout);
 
+//secret page - reserved for future Nic Cage specific data
 router.route("/secret")
   .get(authenticatedUser, usersController.secret);
 
+  //search for a movie from the API database
 router.route("/search")
   .get(authenticatedUser, usersController.search);
-  
+
+  //shows the homepage when logged in 
 router.route("/home")
   .get(authenticatedUser, usersController.home);
 
+  //shows the movie results, must be logged in
 router.route("/movieResult")
   .get(authenticatedUser, usersController.getMovie);
 
@@ -55,10 +63,13 @@ router.route('/api/favorites')
 router.route('/api/favorites/:id')
   .delete(authenticatedUser, usersController.deleteFavorite);
 
+//get all the favorites, this is likely redundant
 router.route("/favorites") 
   .get(authenticatedUser, usersController.getFavorites);
 
-//update route fulfilled via adding commenmts
+//update route, add a comment to one of your favorites
 router.route('/api/favorites/:id')
   .put(authenticatedUser, usersController.updateFavorite)
-module.exports = router
+
+
+  module.exports = router

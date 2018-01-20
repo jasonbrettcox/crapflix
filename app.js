@@ -38,7 +38,7 @@ app.use(function (req, res, next) {
 var routes = require('./config/routes');
 app.use(routes);
 
-// let Favorite = require('/models/favorite.ejs');
+
 
 //adding html endpoints for API
 
@@ -48,15 +48,6 @@ app.get('/', function homepage(req, res) {
       
   });
 
-  // app.get('/', function favorites(req, res) {
-  //   res.render(__dirname + '/views/favorites.ejs');
-      
-  // });
-
-  // app.post('/', function favorites(req, res) {
-  //   res.render(__dirname + '/views/favorites.ejs');
-      
-  // });
 
   /**********
  * ROUTES *
@@ -67,38 +58,12 @@ app.get('/', function homepage(req, res) {
 app.use(express.static('public'));
 
 
-
-
-
-
 /************
  * DATABASE *
  ************/
 
 var db = require('./models/');
   
-//get all favs
-// app.get('/favorites', function (req, res) {
-//   db.Favorites.find({}, function(err, favorites){
-//     if (err){
-//       console.log(err);
-//     } else {
-//       res.render('favorites', {
-//         title: 'Favorites',
-//         favorites: favorites
-//       });
-//     }
-//     });
-    
-//   });
-  
-  //update user somehow
-  // app.put('/api/user/:id', function (req, res){
-  //   db.Movie.findOneAndUpdate({_id: req.params.id}, {$set: {description: req.body.description, bread: req.body.bread, protein: req.body.protein, condiment: req.body.condiment, length: req.body.length}}, {new: true}, function(err, sandwich){
-  // if (err) {return console.log("you suck", + err)}
-  //     res.json(sandwich);
-  //   });      
-  // });
   
   //delete route needs to delete user account or favorite
   app.delete('/api/favorite/:id', function (req, res){

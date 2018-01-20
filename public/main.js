@@ -1,4 +1,4 @@
-
+//front end controller 
 
 $( document ).ready(function() {
 
@@ -26,7 +26,7 @@ console.log(deleteButtons)
      }
     });
  
-  // - Create a list of all favorites as list items
+  // - Create a list of all favorites as list items using the data returned from api call, display to page
 function showFavorites() {
   $.get('/favorites', function(favorites){
     // console.log('888888')
@@ -43,7 +43,7 @@ function showFavorites() {
 showFavorites();
 ;
 
-//save favorite to db
+//save favorite to database using form data returned from API call
 $('#movieForm').on('submit', function(event){
   
      event.preventDefault();
@@ -64,47 +64,45 @@ $('#movieForm').on('submit', function(event){
       // console.log(favorite);
      })
        
-     //Remove list of favorites, create new one
+     //Remove list of favorites, create new one to show current favorites
      $("#favorites").empty();
      showFavorites ();
    })  
  
-//update favorite
+//update favorite ajax call. saves new favorite to database using form data
 
 $(document).on('submit', '#favoritesForm',  function(event){
      event.preventDefault();
      console.log( "ready!" );
     //  console.log(this) 
      console.log($("#favoritesComment", this).val())
+    var favoriteIdDatabase = $('#favoritesIdDatabase', this).val();
      let updatedFavorite= {
-         title: $("#favoritesTitle").val(),
-         release_date: $("#favoritesReleaseDate").val(),
-         overview: $("#favoritesPlotOverview").val(),
-         id: $("#favoritesId").val(),
+         title: $("#favoritesTitle", this).val(),
+         release_date: $("#favoritesReleaseDate", this).val(),
+         overview: $("#favoritesPlotOverview", this).val(),
+         id: $("#favoritesId", this).val(),
          vote_average: $("#favoritesRating").val(),
-         user_id: $("#currentUserId").val(),
+         user_id: $("#currentUserId", this).val(),
          comment: $("#favoritesComment", this).val()
+        
      };
-    //  console.log(updatedFavorite);
+     console.log(updatedFavorite);
 
-    // - Post newFavorite to local database
+    // - Post newFavorite to local database. this is the update route to add comment functionality
      $.ajax({
-       url: "/api/favorites/" +(this).id,
+       url: "/api/favorites/" + favoriteIdDatabase,
        type: 'PUT',
        data: updatedFavorite,
        success:  function(favorite){
       console.log(favorite);
      }})
        
-     //Remove list of favorites, create new one
+     //Remove list of favorites, create new one to make sure that you have the current favorites
      $("#favorites").empty();
      showFavorites ();
    })  
 
 
   
-//   function deleteFavorite(req, res){
-//   console.log('9999999')
-//   var favoriteId = req.params.id;
-// });
-// }
+

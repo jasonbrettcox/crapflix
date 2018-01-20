@@ -1,13 +1,16 @@
 <% include ./partials/header.ejs %>
 
 
-
+<!--creates from using populated API call data and saves it to the Favorites collection in Mongo -->
 <div class="container">
 <p><h1>Favorite Hot Flops:</h1></P>
+<!--for loop runs through array of favorites and creates a formgroup for each one -->
 <% for (i=0; i< favorites.length; i++) { %>
     <form id='favoritesForm' data-id="<%=favorites[i].id %>">
         <div class="formgroup">
-            
+                <!--hidden fields include the current user id to save it to the database and the current Favorite id so the delete button knows which one to delete-->
+                <input type="hidden" id="currentUserId" name="user_id" value="<%=currentUser['_id'] %>"/>
+                <input type="hidden" id="favoritesIdDatabase" name="user_id2" value="<%=favorites[i]._id %>"/>
                 <label for="favoritesTitle">Title: </label>
                 <input type="text" class="form-control form-control-lg" id="favoritesTitle"  value="<%=favorites[i].title %>"/>
                 <!--Poster:  <%=favorites.poster_path%><br>-->
@@ -20,9 +23,9 @@
                 <label for="favoritesRating">Average Rating: </label>
                 <input type="text" class="form-control form-control-lg" id="favoritesRating" value="<%=favorites[i].vote_average%>"/>                 
                 <button class= "btn btn-primary delete" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" type='submit'>Delete</button>
-                   <label for="favoritesRating">Comments: </label>
+                <label for="favoritesRating">Comments: </label>
                 <input type="textarea" class="form-control form-control-lg" id="favoritesComment" data-id="<%=favorites[i].id %>" value=""/>
-            <div class="formgroup">
+                <div class="formgroup">
                 <button class= "btn btn-primary update" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" >Add Comment</button>       
             </div>
          </div>

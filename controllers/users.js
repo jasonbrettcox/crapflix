@@ -4,12 +4,13 @@ var app           = express();
 var request       = require("request");
 var apiKey       = process.env.apiKey || require('../models/env').apiKey;
 var db            = require('../models');
-// GET /signup
+
+// GET /signup show signup page
 function getSignup(request, response) {
   response.render('signup.ejs', { message: request.flash('signupMessage') });
 }
 
-// POST /signup
+// POST /signup --creates new user account
 function postSignup(request, response, next) {
 var signupStrategy = passport.authenticate('local-signup', {
     successRedirect: '/',
@@ -19,13 +20,13 @@ var signupStrategy = passport.authenticate('local-signup', {
 return signupStrategy(request, response, next);
 }
 
-// GET /login
+// GET /login shows login page
 function getLogin(request, response) { 
     response.render('login.ejs', { message: request.flash('loginMessage') });
   }
 
 
-// POST /login 
+// POST /login  fires the Passport login strategy
 function postLogin(request, response, next) {
     var loginStrategy = passport.authenticate('local-login', {
       successRedirect : '/home',
@@ -37,30 +38,30 @@ function postLogin(request, response, next) {
   }
 
 
-// GET /logout
+// GET /logout, logs user out and redirects to index page
 function getLogout(request, response) {
     request.logout();
     response.redirect('/');
   }
 
 
-// Restricted page
+// Restricted page - function not used after all. might be something about the move Face/Off
 function secret(request, response){
   response.render('secret.ejs')
 }
 
-// login to show search page
+// login to show search page, only visible if logged in
 function search(request, response){
   response.render('search.ejs')
 }
 
-//logged in homepage
+//logged in homepage, show homepage template instead of index
 function home(request, response){
   response.render('home.ejs')
 }
 
 
-//logged in, create new favorite
+//logged in, create new favorite and save to database
 function createFavorite(req, res){
   console.log('xxx123')
   console.log(req.body)
@@ -88,9 +89,9 @@ function getMovie(req, res){
           id: response.body.id
 
         }
-        // console.log(jsonBody);
+        // randomizes the data returned and picks a movie at random out of that
         var jsonObject = jsonBody.results[Math.floor((Math.random() * 10) + 1)]
-        // console.log(jsonObject)
+        // shows the results page template
         res.render('movieResults.ejs', {jsonObject});  
     } else if(err){
         res.send(err);
@@ -112,17 +113,7 @@ function getFavorites(req, res){
    // get all  favorites route
 
 
-
-// app.get('/api/favorites', function (req, res) {
-//   // send all favorites as JSON response --- should this be html?
-//   db.Favorites.find(function(err, favorites){
-//     if (err) { return console.log("index error: " + err); }
-//     res.json(favorites);
-//   });
-// });
-
-
-//delete one 
+//delete one favorite by it's id, which is actually the IMDB id
 function deleteFavorite(req, res, next){
 
 // app.delete('/favorites/:id', function deleteFavorite(req, res) {
@@ -136,15 +127,11 @@ function deleteFavorite(req, res, next){
 //update with a comment
 function updateFavorite(req, res, next){
   console.log('999999')
-  db.Favorite.findOneAndUpdate({ id: req.params.id }, function (err, updatedFavorite){
-    req.body
+  db.Favorite.findOneAndUpdate({ _id: req.params.id }, {req.body,  function (err, updatedFavorite){
+    res.json(updatedFavorite);
 });
 } 
    
-//     res.json(updatedFavorite);
-//   })
-// }
-
 
 module.exports = {
   getLogin: getLogin,
