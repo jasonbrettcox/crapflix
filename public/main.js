@@ -95,7 +95,7 @@ $(document).on('submit', '#favoritesForm',  function(event){
        type: 'PUT',
        data: updatedFavorite,
        success:  function(favorite){
-      console.log(favorite);
+      // console.log(favorite);
      }})
        
      //Remove list of favorites, create new one to make sure that you have the current favorites

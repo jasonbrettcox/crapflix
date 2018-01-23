@@ -24,7 +24,7 @@
                 <input type="text" class="form-control form-control-lg" id="favoritesRating" value="<%=favorites[i].vote_average%>"/>                 
                 <button class= "btn btn-primary delete" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" type='submit'>Delete</button>
                 <label for="favoritesRating">Comments: </label>
-                <input type="textarea" class="form-control form-control-lg" id="favoritesComment" data-id="<%=favorites[i].id %>" value=""/>
+                <input type="textarea" class="form-control form-control-lg" id="favoritesComment" data-id="<%=favorites[i].id %>" value="<%=favorites[i].comment%>"/>
                 <div class="formgroup">
                 <button class= "btn btn-primary update" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" >Add Comment</button>       
             </div>

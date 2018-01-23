@@ -64,7 +64,7 @@ function home(request, response){
 //logged in, create new favorite and save to database
 function createFavorite(req, res){
   console.log('xxx123')
-  console.log(req.body)
+  // console.log(req.body)
   db.Favorite.create(req.body, function(err, favorites){
     console.log('db create is working')
     if (err) { return 'create favorite error' + err }
@@ -107,7 +107,7 @@ function getFavorites(req, res){
     db.Favorite.find(function(err, favorites){
       if (err) { return console.log("index error: " + err); }
       console.log(typeof(favorites));
-      console.log(favorites);
+      // console.log(favorites);
       res.render("favorites.ejs", {favorites});
  }) };
    // get all  favorites route
@@ -126,11 +126,21 @@ function deleteFavorite(req, res, next){
 
 //update with a comment
 function updateFavorite(req, res, next){
+  console.log(req.body)
   console.log('999999')
-  db.Favorite.findOneAndUpdate({ _id: req.params.id }, {req.body,  function (err, updatedFavorite){
+  db.Favorite.findOneAndUpdate({ _id: req.params.id }, 
+    { title : req.body.title,
+      release_date: req.body.release_date,
+      overview: req.body.overview,
+      vote_average: req.body.vote_average,
+      id: req.body.id,
+      user_id: req.body.user_id,
+      comment: req.body.comment },
+    
+    function (err, updatedFavorite){
+      console.log(updatedFavorite)
     res.json(updatedFavorite);
-});
-} 
+  })}; 
    
 
 module.exports = {
