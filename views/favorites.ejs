@@ -3,7 +3,7 @@
 
 <!--creates from using populated API call data and saves it to the Favorites collection in Mongo -->
 <div class="container">
-<p><h1>Favorite Hot Flops:</h1></P>
+<p><h1>Favorite Flops:</h1></P>
 <!--for loop runs through array of favorites and creates a formgroup for each one -->
 <% for (i=0; i< favorites.length; i++) { %>
     <form id='favoritesForm' data-id="<%=favorites[i].id %>">
@@ -11,25 +11,27 @@
                 <!--hidden fields include the current user id to save it to the database and the current Favorite id so the delete button knows which one to delete-->
                 <input type="hidden" id="currentUserId" name="user_id" value="<%=currentUser['_id'] %>"/>
                 <input type="hidden" id="favoritesIdDatabase" name="user_id2" value="<%=favorites[i]._id %>"/>
-                <label for="favoritesTitle">Title: </label>
+                <label for="favoritesTitle"><h2>Title:</h2> </label>
                 <input type="text" class="form-control form-control-lg" id="favoritesTitle"  value="<%=favorites[i].title %>"/>
                 <!--Poster:  <%=favorites.poster_path%><br>-->
-                <label for="favoritesReleaseDate">Release Date: </label>
+                <label for="favoritesReleaseDate"><h2>Release Date:</h2> </label>
                 <input type="text" class="form-control form-control-lg" id="favoritesReleaseDate" value="<%=favorites[i].release_date %>"/>
-                <label for="favoritesOverview">Plot Overview: </label>
+                <label for="favoritesOverview"><h2>Plot Overview:</h2> </label>
                 <input type="textarea" class="form-control form-control-xl" id="favoritesPlotOverview" value="<%=favorites[i].overview %>"/>
-                <label for="favoritesIMDB">IMDB Id: </label>
+                <label for="favoritesIMDB"><h2>IMDB Id:</h2> </label>
                 <input type="text" class="form-control form-control-lg" id="favoritesId" value="<%=favorites[i].id %>"/>
-                <label for="favoritesRating">Average Rating: </label>
+                <label for="favoritesRating"><h2>Average Rating:</h2> </label>
                 <input type="text" class="form-control form-control-lg" id="favoritesRating" value="<%=favorites[i].vote_average%>"/>                 
-                <button class= "btn btn-primary delete" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" type='submit'>Delete</button>
-                <label for="favoritesRating">Comments: </label>
-                <input type="textarea" class="form-control form-control-lg" id="favoritesComment" data-id="<%=favorites[i].id %>" value="<%=favorites[i].comment%>"/>
+                
+                <label for="favoritesRating"><h2>Comments:</h2> </label>
+                <input type="textarea" class="form-control form-control-lg" id="favoritesComment" data-id="<%=favorites[i].id %>" value="<%=favorites[i].comment%>"/><br>
                 <div class="formgroup">
-                <button class= "btn btn-primary update" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" >Add Comment</button>       
+                <button class= "btn btn-light update" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" ><h4>Add Comment</h4></button> <br><br>
+                <button class= "btn btn-light delete" id="<%=favorites[i].id %>" data-id="<%=favorites[i].id %>" type='submit'><h4>Remove From Favorites</h4></button><br>      
             </div>
          </div>
         </form>
+        <br><br>
      <%  }; %> 
      
 <script type="text/javascript" src="main.js"></script>

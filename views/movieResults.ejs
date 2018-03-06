@@ -18,11 +18,11 @@
         <label for="resultRating">Average Rating: </label>
         <input type="text" class="form-control form-control-lg" id="resultRating" value="<%=jsonObject.vote_average%>"/>
         <label for="resultReview">Comments: </label>
-        <input type="text" class="form-control form-control-lg" id="resultComment" placeholder="Leave a comment"/>
+        <input type="text" class="form-control form-control-lg" id="resultComment" placeholder="Leave a comment"/><br>
         <input type="hidden" id="currentUserId" name="user_id" value="<%=currentUser['_id'] %>"/>
-        <button class= "btn btn-primary" id="favoriteButton" type='submit'>Save to favorites</button>
-    </div>    
-   <button type="button" class= "btn btn-primary" onclick="myFunction()">Find me another!</button>
+        <button class= "btn btn-light btn-lg" id="favoriteButton" type='submit'>Save to favorites</button>
+    </div>    <br>
+   <button type="button" class= "btn btn-light btn-lg" onclick="myFunction()">Find me another!</button>
         <%function myFunction() {location.reload(); }%>   
         
 </form>    

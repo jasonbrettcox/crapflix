@@ -126,8 +126,8 @@ function deleteFavorite(req, res, next){
 
 //update with a comment
 function updateFavorite(req, res, next){
-  console.log(req.body)
-  console.log('999999')
+  // console.log(req.body)
+  // console.log('999999')
   db.Favorite.findOneAndUpdate({ _id: req.params.id }, 
     { title : req.body.title,
       release_date: req.body.release_date,
